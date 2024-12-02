@@ -783,24 +783,6 @@ Hypothesis testing is a fundamental tool in statistical analysis that helps us m
    - Consider practical significance
    - Document all decisions
 
-### Rules for Setting Up Hypotheses
-
-#### 1. Null Hypothesis (H₀) Properties
-- Is assumed true at the start
-- Usually states "no effect" or "groups are equal"
-- Contains an equality sign (=, ≤, or ≥)
-- Like "innocent until proven guilty"
-
-#### 2. Alternative Hypothesis (H₁) Properties
-- What we want to prove
-- Contains the opposite of H₀ (≠, >, or <)
-- Cannot overlap with H₀
-- Like "proving guilty"
-
-#### 3. Example: Legal System Analogy
-- H₀: Innocent (default position)
-- H₁: Guilty (needs to be proven)
-
 ### Hypothesis Testing - Testing Population Parameters, Not Statistics
 
 - **Key Concept**: Hypothesis tests are always performed on population parameters, never on sample statistics.
@@ -846,165 +828,9 @@ Example: Legal System Analogy
 H₀: Innocent (default position)
 H₁: Guilty (needs to be proven)
 
-```
-
-Follow these instructions to make the following change to my code document.
-
-Instruction: Cleaning up duplicates and properly organizing the hypothesis testing section
-
-Code Edit:
-```
-{{ ... }}
-
-### Understanding Hypothesis Testing
-
-Hypothesis testing is a fundamental tool in statistical analysis that helps us make decisions about populations based on sample data. Here's a comprehensive overview:
-
-#### Core Components
-
-1. **Null Hypothesis (H₀)**
-   - The default position or "no effect" claim
-   - Example: "There is no difference between treatments"
-   - What we assume is true until proven otherwise
-
-2. **Alternative Hypothesis (H₁)**
-   - The claim we want to support
-   - Example: "The new treatment is more effective"
-   - What we need evidence to accept
-
-#### Types of Errors
-
-| | H₀ is True | H₀ is False |
-|---|---|---|
-| Reject H₀ | Type I Error (α) | Correct Decision |
-| Fail to Reject H₀ | Correct Decision | Type II Error (β) |
-
-#### Key Concepts
-
-1. **Significance Level (α)**
-   - Probability of Type I error
-   - Usually set at 0.05 (5%)
-   - Lower α means stronger evidence needed
-
-2. **Power (1 - β)**
-   - Probability of correctly rejecting false H₀
-   - Increases with:
-     * Larger sample size
-     * Larger effect size
-     * Lower variability
-
-3. **P-value**
-   - Probability of getting results as extreme as observed
-   - If p < α: Reject H₀
-   - If p ≥ α: Fail to reject H₀
-
-#### Common Misconceptions
-
-1. **About P-values**
-   - ❌ P-value is NOT probability H₀ is true
-   - ✓ It's probability of data, given H₀ is true
-
-2. **About "Failing to Reject"**
-   - ❌ Not rejecting ≠ proving H₀
-   - ✓ Just insufficient evidence against H₀
-
-3. **About Significance**
-   - ❌ Statistical ≠ practical significance
-   - ✓ Consider effect size and context
-
-#### Best Practices
-
-1. **Before Testing**
-   - Define hypotheses clearly
-   - Choose appropriate test
-   - Set α level
-   - Determine sample size needed
-
-2. **During Analysis**
-   - Check assumptions
-   - Use appropriate test statistic
-   - Calculate effect size
-
-3. **After Testing**
-   - Report exact p-values
-   - Consider practical significance
-   - Document all decisions
 
 
-### Hypothesis Testing - Testing Population Parameters, Not Statistics
-
-- **Key Concept**: Hypothesis tests are always performed on population parameters, never on sample statistics.
-  
-- **Reasoning**: 
-  - Sample statistics (like sample mean, sample proportion) are values we already have calculated from our data
-  - These statistics are known values, so there's no uncertainty to test
-  - The purpose of hypothesis testing is to make inferences about unknown population parameters using sample data
-  
-- **Example**:
-  - We test hypotheses about population means (μ), not sample means (x̄)
-  - We test hypotheses about population proportions (p), not sample proportions (p̂)
-  - We test hypotheses about population standard deviations (σ), not sample standard deviations (s)
-
-- **Remember**: The goal of inferential statistics is to use sample data to make conclusions about unknown population parameters.
-
-
-Common hypothesis tests include:
-
-1. Testing a population mean (One sample t-test)(opens in a new tab).
-2. Testing the difference in means (Two-sample t-test)(opens in a new tab)
-3. Testing the difference before and after some treatment on the same individual (Paired t-test)(opens in a new tab)
-4. Testing a population proportion (One sample z-test)(opens in a new tab)
-5. Testing the difference between population proportions (Two sample z-test)(opens in a new tab)
-
-
-You can use one of these sites to provide a t-table or z-table to support one of the above approaches:
-
-t-table(opens in a new tab)
-t-table or z-table
-
-
-### Rules for Setting Up Hypotheses
-
-#### 1. Null Hypothesis (H₀) Properties
-- Is assumed true at the start
-- Usually states "no effect" or "groups are equal"
-- Contains an equality sign (=, ≤, or ≥)
-- Like "innocent until proven guilty"
-
-#### 2. Alternative Hypothesis (H₁) Properties
-- What we want to prove
-- Contains the opposite of H₀ (≠, >, or <)
-- Cannot overlap with H₀
-- Like "proving guilty"
-
-#### 3. Example: Legal System Analogy
-- H₀: Innocent (default position)
-- H₁: Guilty (needs to be proven)
-
-
-Setting up null and alternative hypotheses
-––––––––––––––––––––––––––––––––––––––––––
-
-1. The H₀ is true before you collect any data.
-2. The H₀ usually states there is no effect or that two groups are equal.
-3. The H₀ and H₁ are competing, non-overlapping hypotheses.
-4. H₁ is what we would like to prove to be true.
-5. H₀ contains an equal sign of some kind - either =, ≤, or ≥.
-6. H₁ contains the opposition of the null - either ≠, >, or <.
-
-
-Because we wanted to test if a new page was better than an existing page, we set that up in the alternative. Two indicators are that the null should hold the equality, and the statement we would like to be true should be in the alternative. Therefore, it would look like this:
-
-H₀ : μ₁ ≤ μ₂
-H₁ : μ₁ > μ₂
-
-
-Here μ₁ represents the population mean return from the new page. Similarly, μ₂ represents the population mean return from the old page.
-
-Depending on your question of interest, you would change your null and alternative hypotheses to match.
-
-
-# Understanding Type I and Type II Errors in Hypothesis Testing
+### Understanding Type I and Type II Errors in Hypothesis Testing
 
 ## Definitions
 
@@ -1275,4 +1101,154 @@ Let's recap the steps we took to analyze the results of this A/B test.
 3. We used this sampling distribution to simulate the distribution under the null hypothesis by creating a random normal distribution centered at 0 with the same spread and size.
 4. We computed the p-value by finding the proportion of values in the null distribution greater than our observed difference.
 5. We used this p-value to determine the statistical significance of our observed difference.
+
+
+
+
+# COURSE - 5: ALGORITHMS 
+
+
+## Regression 
+
+Scatter plots
+Scatter plots are a common visual for comparing two quantitative variables. A common summary statistic that relates to a scatter plot is the correlation coefficient commonly denoted by r.
+
+Though there are a few different ways(opens in a new tab) to measure correlation between two variables, the most common way is with Pearson's correlation coefficient(opens in a new tab). Pearson's correlation coefficient provides the:
+
+1. Strength
+2. Direction
+
+of a linear relationship. Spearman's Correlation Coefficient(opens in a new tab) does not measure linear relationships specifically, and it might be more appropriate for certain cases of associating two variables.
+
+
+# Correlation Coefficients & Regression Analysis
+
+## OCR Result:
+Correlation coefficients provide a measure of the **strength** and **direction** of a **linear** relationship.
+
+### Correlation Ranges:
+- **Strong**: 0.7 ≤ |r| ≤ 1.0
+- **Moderate**: 0.3 ≤ |r| < 0.7
+- **Weak**: 0.0 ≤ |r| < 0.3
+
+### Calculation:
+r = Σ(x₁-x̄)(y₁-ȳ) / √[Σ(x₁-x̄)²][Σ(y₁-ȳ)²]
+
+In Excel: CORREL(col1, col2)
+
+## Extended Explanation
+
+### Types of Correlation
+1. **Pearson's Correlation (r)**
+   - Measures linear relationships
+   - Most commonly used
+   - Values range from -1 to +1
+   - Assumes normal distribution
+
+2. **Spearman's Correlation (ρ)**
+   - Non-parametric measure
+   - Measures monotonic relationships
+   - Better for non-linear relationships
+   - Uses ranked data
+
+### Interpretation
+- **Direction**:
+  - Positive: As one variable increases, the other increases
+  - Negative: As one variable increases, the other decreases
+
+- **Visualization**:
+  - Scatter plots best show relationship
+  - Points close to line indicate strong correlation
+  - Spread points indicate weak correlation
+
+### Important Notes
+1. Correlation ≠ causation
+2. Only measures linear relationships
+3. Sensitive to outliers
+4. Should be used with scatter plots
+5. Sample size affects reliability
+
+### Applications
+- Market analysis
+- Scientific research
+- Quality control
+- Risk assessment
+- Financial modeling
+
+
+A line is commonly identified by an intercept and a slope.
+
+The intercept is defined as the predicted value of the response when the x-variable is zero.
+
+The slope is defined as the predicted change in the response for every one unit increase in the x-variable.
+
+
+
+## Linear Regression Notation
+
+We notate the line in linear regression in the following way:
+
+ŷ = b₀ + b₁x₁
+
+where:
+
+- **ŷ** (y-hat) is the predicted value of the response from the line
+- **b₀** is the intercept
+- **b₁** is the slope
+- **x₁** is the explanatory variable
+
+Note: The hat in ŷ indicates that this is a predicted value from the fitted line, not the real value. We use y (without the hat) to denote the actual response value for a data point in our dataset.
+
+
+The main algorithm used to find the best fit line is called the least-squares algorithm, which finds the line that minimizes Σ(yi - ŷi)².
+
+There are other ways we might choose a "best" line, but this algorithm tends to do a good job in many scenarios.
+
+It turns out that in order to minimize this function, we have set equations that provide the intercept and slope that should be used.
+
+If you have a set of points like the values in the image here:
+
+X     Y
+10    8.04
+8     6.95
+13    7.58
+9     8.81
+11    8.33
+14    9.96
+6     7.24
+4     4.26
+12    10.84
+7     4.82
+5     5.68
+
+In order to compute the slope and intercept, we need to compute the following:
+
+   x̄ = (1/n)∑xᵢ 
+
+   ȳ = (1/n)∑yᵢ
+
+   sᵧ = √[(1/(n-1))∑(yᵢ - ȳ)²] (Using the Bessel's Correction formula)
+
+   sₓ = √[(1/(n-1))∑(xᵢ - x̄)²] (Using the Bessel's Correction formula)
+
+   r = ∑(xᵢ-x̄)(yᵢ-ȳ)/√[∑(xᵢ-x̄)²]√[∑(yᵢ-ȳ)²]
+
+   b₁ = r(sᵧ/sₓ)
+
+   b₀ = ȳ - b₁x̄
+
+
+
+We can perform hypothesis tests for the coefficients in our linear models using Python (and other software). These tests help us determine if there is a statistically significant linear relationship between a particular variable and the response. The hypothesis test for the intercept isn't useful in most cases.
+
+However, the hypothesis test for each x-variable is a test of if that population slope is equal to zero vs. an alternative where the parameter differs from zero. Therefore, if the slope is different than zero (the alternative is true), we have evidence that the x-variable attached to that coefficient has a statistically significant linear relationship with the response. This in turn suggests that the x-variable should help us in predicting the response (or at least be better than not having it in the model).
+
+
+
+The R-squared value is the square of the correlation coefficient.
+
+A common definition for the R-squared variable is that it is the amount of variability in the response variable that can be explained by the x-variable in our model. In general, the closer this value is to 1, the better our model fits the data.
+
+Many feel that R-squared isn't a great measure (which is possibly true), but I would argue that using cross-validation can assist us with validating any measure that helps us understand the fit of a model to our data. Here(opens in a new tab), you can find one such argument explaining why one individual doesn't care for R-squared.
+
 
