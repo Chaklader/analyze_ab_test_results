@@ -103,7 +103,7 @@ The choice between prioritizing sensitivity or specificity depends on the contex
 Understanding these metrics helps in:
 - Choosing appropriate tests for specific situations
 - Interpreting test results correctly
-- Making informed decisions about testing procedures4
+- Making informed decisions about testing procedures
 
 
 Here's the markdown table based on the cases from the video:
@@ -134,7 +134,7 @@ This table shows:
 
 <br>
 
-![Cancer Statistics Visualization](cancer.png)
+![Cancer Statistics Visualization](images/cancer.png)
 
 <br>
 
@@ -310,7 +310,13 @@ For any outcome x, the quadratic difference between the value x and μ can be wr
 
    (x−μ)²
 
-   
+
+<br>
+
+![P value](images/graph.png)
+
+<br>
+
 ### Normal Distribution (Bell Curve)
 
 The normal distribution is a symmetrical, bell-shaped curve where:
@@ -670,80 +676,6 @@ Output is
 (-10.414599391793885, -5.5854006082061138)
 ```
 
-### Understanding Hypothesis Testing
-
-Hypothesis testing is a fundamental tool in statistical analysis that helps us make decisions about populations based on sample data. Here's a comprehensive overview:
-
-#### Core Components
-
-1. **Null Hypothesis (H₀)**
-   - The default position or "no effect" claim
-   - Example: "There is no difference between treatments"
-   - What we assume is true until proven otherwise
-
-2. **Alternative Hypothesis (H₁)**
-   - The claim we want to support
-   - Example: "The new treatment is more effective"
-   - What we need evidence to accept
-
-#### Types of Errors
-
-| | H₀ is True | H₀ is False |
-|---|---|---|
-| Reject H₀ | Type I Error (α) | Correct Decision |
-| Fail to Reject H₀ | Correct Decision | Type II Error (β) |
-
-#### Key Concepts
-
-1. **Significance Level (α)**
-   - Probability of Type I error
-   - Usually set at 0.05 (5%)
-   - Lower α means stronger evidence needed
-
-2. **Power (1 - β)**
-   - Probability of correctly rejecting false H₀
-   - Increases with:
-     * Larger sample size
-     * Larger effect size
-     * Lower variability
-
-3. **P-value**
-   - Probability of getting results as extreme as observed
-   - If p < α: Reject H₀
-   - If p ≥ α: Fail to reject H₀
-
-#### Common Misconceptions
-
-1. **About P-values**
-   - ❌ P-value is NOT probability H₀ is true
-   - ✓ It's probability of data, given H₀ is true
-
-2. **About "Failing to Reject"**
-   - ❌ Not rejecting ≠ proving H₀
-   - ✓ Just insufficient evidence against H₀
-
-3. **About Significance**
-   - ❌ Statistical ≠ practical significance
-   - ✓ Consider effect size and context
-
-#### Best Practices
-
-1. **Before Testing**
-   - Define hypotheses clearly
-   - Choose appropriate test
-   - Set α level
-   - Determine sample size needed
-
-2. **During Analysis**
-   - Check assumptions
-   - Use appropriate test statistic
-   - Calculate effect size
-
-3. **After Testing**
-   - Report exact p-values
-   - Consider practical significance
-   - Document all decisions
-
 ### Relationship Between Confidence Intervals and Hypothesis Testing
 
 Confidence intervals and hypothesis testing are two sides of the same inferential statistics coin. Here's how they relate:
@@ -774,583 +706,6 @@ Confidence intervals and hypothesis testing are two sides of the same inferentia
    - If CI excludes null value → Reject H₀
    
 This dual approach (using both CIs and hypothesis tests) often provides better insights than either method alone.
-
-
-
-–––––––––––––––––––––––––––––––––––––––
-
-<br>
-
-![Alt Text](cancer.png)
-
-<br>
-
-### 1. Descriptive Statistics
-Descriptive statistics is about describing our collected data using the measures discussed throughout this lesson: measures of center, measures of spread, the shape of our distribution, and outliers. We can also use plots of our data to gain a better understanding.
-
-### 2. Inferential Statistics
-Inferential Statistics is about using our collected data to draw conclusions to a larger population. Performing inferential statistics well requires that we take a sample that accurately represents our population of interest.
-
-A common way to collect data is via a survey. However, surveys may be extremely biased depending on the types of questions that are asked, and the way the questions are asked. This is a topic you should think about when tackling a project.
-
-We looked at specific examples that allowed us to identify the
-
-   Population - our entire group of interest.
-   Parameter - numeric summary about a population
-   Sample - a subset of the population
-   Statistic numeric summary about a sample
-
-
-
-A sampling distribution is the distribution of a statistic. Here we looked at the distribution of the proportion for samples of 5 students. 
-
-
-
-### Law of Large Numbers (LLN)
-
-The Law of Large Numbers states that as the sample size increases, the sample mean converges to the true population mean. There are two versions:
-
-1. **Weak Law (WLLN)**:
-   - States that for a large n, the sample mean (x̄) is likely to be close to μ
-   - P(|x̄ - μ| < ε) → 1 as n → ∞, for any ε > 0
-
-2. **Strong Law (SLLN)**:
-   - States that x̄ converges to μ with probability 1
-   - P(lim n→∞ x̄ = μ) = 1
-
-### Central Limit Theorem (CLT)
-
-The Central Limit Theorem is a fundamental principle stating that when independent random variables are added, their properly normalized sum tends toward a normal distribution, regardless of the underlying distribution. Key points:
-
-1. **Requirements**:
-   - Independent and identically distributed variables
-   - Sample size sufficiently large (usually n ≥ 30)
-
-2. **Mathematical Expression**:
-   For sample mean x̄:
-   (x̄ - μ)/(σ/√n) → N(0,1)
-
-3. **Practical Implications**:
-   - Sample means follow normal distribution
-   - Standard error = σ/√n
-   - Enables statistical inference and hypothesis testing
-   - Forms basis for confidence intervals
-
-The Central Limit Theorem states that with a large enough sample size the sampling distribution of the mean will be normally distributed.
-
-The Central Limit Theorem actually applies to these well-known statistics:
-
-- Sample means (x̄)
-- Sample proportions (p)
-- Difference in sample means (x̄₁ - x̄₂)
-- Difference in sample proportions (p₁ - p₂)
-
-And it applies to additional statistics, but it doesn't apply to all statistics! You will see more on this towards the end of this lesson.
-
-### Where Central Limit Theorem Doesn't Apply
-
-The CLT has important limitations and doesn't work in these cases:
-
-1. **Small Sample Sizes**:
-   - When n < 30, especially for highly skewed distributions
-   - For extremely non-normal data, might need n > 100
-
-2. **Non-Independent Samples**:
-   - Time series data with autocorrelation
-   - Clustered or hierarchical data
-   - Samples with strong dependencies
-
-3. **Infinite Variance**:
-   - Distributions with undefined variance (e.g., Cauchy distribution)
-   - Heavy-tailed distributions where variance doesn't exist
-
-4. **Sample Maximum/Minimum**:
-   - Extreme value statistics follow different distributions
-   - Maximum/minimum values follow extreme value distributions, not normal
-
-5. **Ratio Statistics**:
-   - Ratios of random variables often have undefined moments
-   - Can lead to heavy-tailed distributions
-
-### Parameter Estimation Methods
-
-#### 1. Maximum Likelihood Estimation (MLE)
-- Finds parameter values that maximize the likelihood of observing the given data
-- Mathematical formulation: θ̂ = argmax L(θ|x)
-- Properties:
-  - Consistent: Converges to true value as sample size increases
-  - Asymptotically efficient: Achieves minimum variance
-  - Example: For normal distribution, MLE of μ is sample mean x̄
-
-#### 2. Method of Moments Estimation (MME)
-- Equates sample moments with theoretical population moments
-- Steps:
-  1. Calculate sample moments (mean, variance, etc.)
-  2. Set equal to theoretical moments
-  3. Solve for parameters
-- Example: For normal distribution
-  - First moment (mean): x̄ = μ
-  - Second moment (variance): s² = σ²
-
-#### 3. Bayesian Estimation
-- Combines prior knowledge with observed data
-- Uses Bayes' theorem: P(θ|x) ∝ P(x|θ)P(θ)
-- Components:
-  - Prior distribution P(θ): Initial beliefs
-  - Likelihood P(x|θ): Data evidence
-  - Posterior distribution P(θ|x): Updated beliefs
-- Advantages:
-  - Incorporates prior knowledge
-  - Provides full probability distribution
-  - Handles uncertainty naturally
-
-
-
-Bootstrapping is sampling with replacement. Using random.choice in Python actually samples in this way. Where the probability of any number in our set stays the same regardless of how many times it has been chosen. Flipping a coin and rolling a die is like bootstrap sampling as well, as rolling a 6 in one scenario doesn't mean that 6 is less likely later.
-
-
-
-### Bootstrapping Made Simple
-
-Think of bootstrapping like this:
-
-Imagine you have a bag of 10 marbles, and you want to understand the typical color distribution in a much larger population of marbles from the same factory. Here's what bootstrapping does:
-
-1. You reach into the bag and pick a marble
-2. Write down its color
-3. Put it back in the bag
-4. Repeat many times (say 1000 times)
-
-Even though you only have 10 real marbles, by putting each marble back before picking again (sampling with replacement), you can create many different samples. This helps you:
-- Estimate how much your statistics might vary
-- Build confidence intervals
-- Make predictions about the larger population
-
-It's like making the most of your limited data by reusing it in a smart way. The key is that each time you pick, every marble has an equal chance of being chosen, even if it was just picked before.
-
-Real-world example: If you want to understand average customer spending but only have data from 100 customers, bootstrapping lets you create 1000s of different combinations of these 100 customers to better understand the possible range of average spending.
-
-
-### Bootstrapping in Statistics
-
-Bootstrapping is a resampling technique that involves sampling with replacement from the original dataset. Key aspects include:
-
-#### Core Concepts
-- **Sampling with Replacement**: Each observation can be selected multiple times
-- **Random Selection**: Each observation has equal probability of being chosen each time
-- **Large Number of Resamples**: Typically 1000+ bootstrap samples
-
-#### Applications
-1. **Estimating Standard Errors**:
-   - Calculate statistic for each bootstrap sample
-   - Standard deviation of bootstrap statistics estimates standard error
-
-2. **Confidence Intervals**:
-   - Percentile method: Use quantiles of bootstrap distribution
-   - BCa (Bias-Corrected and accelerated) method for better accuracy
-
-3. **Hypothesis Testing**:
-   - Generate null distribution through bootstrapping
-   - Compare observed statistic to bootstrap distribution
-
-#### Advantages
-- Non-parametric: No distribution assumptions
-- Works with complex statistics
-- Effective for small sample sizes
-- Provides empirical distribution of statistics
-
-#### Limitations
-- Assumes sample represents population well
-- Computationally intensive
-- May not work well with dependent data
-- Cannot extrapolate beyond observed range
-
-#### Python Implementation Example:
-
-```python
-# Basic bootstrap sample
-np.random.choice(data, size=len(data), replace=True)
-```
-
-
-### Importance of Sampling Distributions
-
-Two popular inferential techniques are confidence intervals and hypothesis testing.
-
-There are many formulas and built-in calculators available to calculate the values for these techniques. However, these formulas often hide their assumptions and potential biases. With sampling distributions and bootstrapping, you'll avoid needing to rely on these formulas and can figure out how to calculate these values without running into these issues.
-
-### Relationship Between Sampling Distributions and Confidence Intervals
-
-Sampling distributions and confidence intervals are closely connected. Here's how they work together:
-
-#### The Connection
-1. **Sampling Distribution**:
-   - Shows all possible values of a statistic (like mean) from different samples
-   - The spread tells us how much sample means typically vary
-   - Shape often follows normal distribution (thanks to CLT)
-
-2. **Confidence Interval**:
-   - Uses the sampling distribution's properties
-   - Usually captures middle 95% (or other %) of sampling distribution
-   - Formula: Point Estimate ± (Critical Value × Standard Error)
-
-#### Simple Example
-Imagine measuring heights in a class:
-- Sample mean = 170cm
-- If we know sampling distribution is normal
-- And standard error = 2cm
-- 95% confidence interval = 170 ± (1.96 × 2) = (166.08cm, 173.92cm)
-
-#### Why This Matters
-- Sampling distribution tells us how much sample statistics typically vary
-- This variation directly determines confidence interval width
-- Larger sample size → Narrower sampling distribution → Tighter confidence intervals
-- More variable data → Wider sampling distribution → Wider confidence intervals
-
-### Traditional vs. Bootstrap Confidence Intervals
-
-#### Traditional Methods
-1. **Assumptions**:
-   - Requires normal distribution
-   - Needs known population parameters
-   - Uses theoretical formulas
-
-2. **Calculation**:
-   - Based on standard error formulas
-   - Uses t or z critical values
-   - Point estimate ± (critical value × standard error)
-
-#### Bootstrap Methods
-1. **Advantages**:
-   - No distributional assumptions
-   - Works with any statistic
-   - Handles complex sampling designs
-
-2. **Process**:
-   - Resamples from actual data
-   - Creates empirical distribution
-   - Uses percentiles of resampled statistics
-
-#### Key Differences
-1. **Flexibility**:
-   - Traditional: Limited to specific distributions
-   - Bootstrap: Works with any distribution
-
-2. **Accuracy**:
-   - Traditional: More precise when assumptions met
-   - Bootstrap: Better for non-normal/unknown distributions
-
-3. **Computation**:
-   - Traditional: Quick, formula-based
-   - Bootstrap: Computationally intensive, simulation-based
-
-
-–––––––––––––––––––––––––––––––––––––––
-
-<br>
-
-![Alt Text](cancer.png)
-
-<br>
-
-### 1. Descriptive Statistics
-Descriptive statistics is about describing our collected data using the measures discussed throughout this lesson: measures of center, measures of spread, the shape of our distribution, and outliers. We can also use plots of our data to gain a better understanding.
-
-### 2. Inferential Statistics
-Inferential Statistics is about using our collected data to draw conclusions to a larger population. Performing inferential statistics well requires that we take a sample that accurately represents our population of interest.
-
-A common way to collect data is via a survey. However, surveys may be extremely biased depending on the types of questions that are asked, and the way the questions are asked. This is a topic you should think about when tackling a project.
-
-We looked at specific examples that allowed us to identify the
-
-   Population - our entire group of interest.
-   Parameter - numeric summary about a population
-   Sample - a subset of the population
-   Statistic numeric summary about a sample
-
-
-
-A sampling distribution is the distribution of a statistic. Here we looked at the distribution of the proportion for samples of 5 students. 
-
-
-
-### Law of Large Numbers (LLN)
-
-The Law of Large Numbers states that as the sample size increases, the sample mean converges to the true population mean. There are two versions:
-
-1. **Weak Law (WLLN)**:
-   - States that for a large n, the sample mean (x̄) is likely to be close to μ
-   - P(|x̄ - μ| < ε) → 1 as n → ∞, for any ε > 0
-
-2. **Strong Law (SLLN)**:
-   - States that x̄ converges to μ with probability 1
-   - P(lim n→∞ x̄ = μ) = 1
-
-### Central Limit Theorem (CLT)
-
-The Central Limit Theorem is a fundamental principle stating that when independent random variables are added, their properly normalized sum tends toward a normal distribution, regardless of the underlying distribution. Key points:
-
-1. **Requirements**:
-   - Independent and identically distributed variables
-   - Sample size sufficiently large (usually n ≥ 30)
-
-2. **Mathematical Expression**:
-   For sample mean x̄:
-   (x̄ - μ)/(σ/√n) → N(0,1)
-
-3. **Practical Implications**:
-   - Sample means follow normal distribution
-   - Standard error = σ/√n
-   - Enables statistical inference and hypothesis testing
-   - Forms basis for confidence intervals
-
-The Central Limit Theorem states that with a large enough sample size the sampling distribution of the mean will be normally distributed.
-
-The Central Limit Theorem actually applies to these well-known statistics:
-
-- Sample means (x̄)
-- Sample proportions (p)
-- Difference in sample means (x̄₁ - x̄₂)
-- Difference in sample proportions (p₁ - p₂)
-
-And it applies to additional statistics, but it doesn't apply to all statistics! You will see more on this towards the end of this lesson.
-
-### Where Central Limit Theorem Doesn't Apply
-
-The CLT has important limitations and doesn't work in these cases:
-
-1. **Small Sample Sizes**:
-   - When n < 30, especially for highly skewed distributions
-   - For extremely non-normal data, might need n > 100
-
-2. **Non-Independent Samples**:
-   - Time series data with autocorrelation
-   - Clustered or hierarchical data
-   - Samples with strong dependencies
-
-3. **Infinite Variance**:
-   - Distributions with undefined variance (e.g., Cauchy distribution)
-   - Heavy-tailed distributions where variance doesn't exist
-
-4. **Sample Maximum/Minimum**:
-   - Extreme value statistics follow different distributions
-   - Maximum/minimum values follow extreme value distributions, not normal
-
-5. **Ratio Statistics**:
-   - Ratios of random variables often have undefined moments
-   - Can lead to heavy-tailed distributions
-
-### Parameter Estimation Methods
-
-#### 1. Maximum Likelihood Estimation (MLE)
-- Finds parameter values that maximize the likelihood of observing the given data
-- Mathematical formulation: θ̂ = argmax L(θ|x)
-- Properties:
-  - Consistent: Converges to true value as sample size increases
-  - Asymptotically efficient: Achieves minimum variance
-  - Example: For normal distribution, MLE of μ is sample mean x̄
-
-#### 2. Method of Moments Estimation (MME)
-- Equates sample moments with theoretical population moments
-- Steps:
-  1. Calculate sample moments (mean, variance, etc.)
-  2. Set equal to theoretical moments
-  3. Solve for parameters
-- Example: For normal distribution
-  - First moment (mean): x̄ = μ
-  - Second moment (variance): s² = σ²
-
-#### 3. Bayesian Estimation
-- Combines prior knowledge with observed data
-- Uses Bayes' theorem: P(θ|x) ∝ P(x|θ)P(θ)
-- Components:
-  - Prior distribution P(θ): Initial beliefs
-  - Likelihood P(x|θ): Data evidence
-  - Posterior distribution P(θ|x): Updated beliefs
-- Advantages:
-  - Incorporates prior knowledge
-  - Provides full probability distribution
-  - Handles uncertainty naturally
-
-
-
-Bootstrapping is sampling with replacement. Using random.choice in Python actually samples in this way. Where the probability of any number in our set stays the same regardless of how many times it has been chosen. Flipping a coin and rolling a die is like bootstrap sampling as well, as rolling a 6 in one scenario doesn't mean that 6 is less likely later.
-
-
-
-### Bootstrapping Made Simple
-
-Think of bootstrapping like this:
-
-Imagine you have a bag of 10 marbles, and you want to understand the typical color distribution in a much larger population of marbles from the same factory. Here's what bootstrapping does:
-
-1. You reach into the bag and pick a marble
-2. Write down its color
-3. Put it back in the bag
-4. Repeat many times (say 1000 times)
-
-Even though you only have 10 real marbles, by putting each marble back before picking again (sampling with replacement), you can create many different samples. This helps you:
-- Estimate how much your statistics might vary
-- Build confidence intervals
-- Make predictions about the larger population
-
-It's like making the most of your limited data by reusing it in a smart way. The key is that each time you pick, every marble has an equal chance of being chosen, even if it was just picked before.
-
-Real-world example: If you want to understand average customer spending but only have data from 100 customers, bootstrapping lets you create 1000s of different combinations of these 100 customers to better understand the possible range of average spending.
-
-
-### Bootstrapping in Statistics
-
-Bootstrapping is a resampling technique that involves sampling with replacement from the original dataset. Key aspects include:
-
-#### Core Concepts
-- **Sampling with Replacement**: Each observation can be selected multiple times
-- **Random Selection**: Each observation has equal probability of being chosen each time
-- **Large Number of Resamples**: Typically 1000+ bootstrap samples
-
-#### Applications
-1. **Estimating Standard Errors**:
-   - Calculate statistic for each bootstrap sample
-   - Standard deviation of bootstrap statistics estimates standard error
-
-2. **Confidence Intervals**:
-   - Percentile method: Use quantiles of bootstrap distribution
-   - BCa (Bias-Corrected and accelerated) method for better accuracy
-
-3. **Hypothesis Testing**:
-   - Generate null distribution through bootstrapping
-   - Compare observed statistic to bootstrap distribution
-
-#### Advantages
-- Non-parametric: No distribution assumptions
-- Works with complex statistics
-- Effective for small sample sizes
-- Provides empirical distribution of statistics
-
-#### Limitations
-- Assumes sample represents population well
-- Computationally intensive
-- May not work well with dependent data
-- Cannot extrapolate beyond observed range
-
-#### Python Implementation Example:
-
-```python
-# Basic bootstrap sample
-np.random.choice(data, size=len(data), replace=True)
-
-```
-
-Follow these instructions to make the following change to my code document.
-
-Instruction: Adding statistical tests explanations before the divider line
-
-Code Edit:
-```
-{{ ... }}
-
-Use StatsModels' CompareMeans to calculate the confidence interval for the difference between means:
-
-
-```python
-import numpy as np, statsmodels.stats.api as sms
-
-X1, X2 = np.arange(10,21), np.arange(20,26.5,.5)
-
-cm = sms.CompareMeans(sms.DescrStatsW(X1), sms.DescrStatsW(X2))
-print cm.tconfint_diff(usevar='unequal')
-```
-
-Output is
-
-```textmate
-(-10.414599391793885, -5.5854006082061138)
-```
-
-### Common Statistical Tests and Their Applications
-
-#### 1. T-Test (One Sample)
-Think of this as checking if your sample is significantly different from a known value. For example, testing if the average height of students in your class differs from the national average.
-
-**Equation**: t = (x̄ - μ₀)/(s/√n)
-- x̄: Sample mean
-- μ₀: Hypothesized population mean
-- s: Sample standard deviation
-- n: Sample size
-
-#### 2. Two-Sample T-Test (Independent)
-Imagine comparing two groups that are completely separate, like test scores of two different classes. This test tells you if their averages are truly different.
-
-**Equation**: t = (x̄₁ - x̄₂)/√(s₁²/n₁ + s₂²/n₂)
-- x̄₁, x̄₂: Means of two samples
-- s₁², s₂²: Variances of two samples
-- n₁, n₂: Sample sizes
-
-#### 3. Paired T-Test
-Perfect for "before and after" scenarios, like measuring weight loss or improvement in test scores for the same group of people.
-
-**Equation**: t = d̄/(sd/√n)
-- d̄: Mean difference between pairs
-- sd: Standard deviation of differences
-- n: Number of pairs
-
-#### 4. Z-Test
-Used when you know the population standard deviation - rare in real life but common in theory. Like a t-test but for large samples or known population variance.
-
-**Equation**: z = (x̄ - μ)/(σ/√n)
-- x̄: Sample mean
-- μ: Population mean
-- σ: Population standard deviation
-- n: Sample size
-
-#### 5. Chi-Squared Test
-Perfect for categorical data, like testing if there's a relationship between favorite color and gender, or if dice rolls are fair.
-
-**Equation**: χ² = Σ((O - E)²/E)
-- O: Observed frequencies
-- E: Expected frequencies
-- Σ: Sum over all categories
-
-#### 6. F-Test
-Compares variability between groups. Useful when you want to know if two or more groups have similar spread in their data.
-
-**Equation**: F = s₁²/s₂²
-- s₁²: Variance of first sample
-- s₂²: Variance of second sample
-- Larger variance goes in numerator
-
-
-### Relationship Between Confidence Intervals and Hypothesis Testing
-
-Confidence intervals and hypothesis testing are two sides of the same inferential statistics coin. Here's how they relate:
-
-1. **Complementary Information**
-   - Hypothesis tests tell us whether there's a significant difference
-   - Confidence intervals tell us the range of plausible values for that difference
-
-2. **Decision Alignment**
-   - If a 95% confidence interval doesn't contain the null hypothesis value:
-     * The corresponding two-tailed hypothesis test will reject H₀ at α = 0.05
-   - If it does contain the null value:
-     * The test will fail to reject H₀ at α = 0.05
-
-3. **Practical Advantages**
-   - Confidence intervals provide more information than hypothesis tests alone
-   - They show both statistical significance AND practical importance
-   - Example: A difference might be statistically significant (p < 0.05) but practically tiny
-
-4. **Mathematical Connection**
-   ```
-   CI = Point Estimate ± (Critical Value × Standard Error)
-   Test Statistic = (Point Estimate - Null Value) / Standard Error
-   ```
-
-5. **Visual Interpretation**
-   - If CI contains null value → Cannot reject H₀
-   - If CI excludes null value → Reject H₀
-   
-This dual approach (using both CIs and hypothesis tests) often provides better insights than either method alone.
-
 
 
 
@@ -1428,7 +783,68 @@ Hypothesis testing is a fundamental tool in statistical analysis that helps us m
    - Consider practical significance
    - Document all decisions
 
-{{ ... }}
+### Rules for Setting Up Hypotheses
+
+#### 1. Null Hypothesis (H₀) Properties
+- Is assumed true at the start
+- Usually states "no effect" or "groups are equal"
+- Contains an equality sign (=, ≤, or ≥)
+- Like "innocent until proven guilty"
+
+#### 2. Alternative Hypothesis (H₁) Properties
+- What we want to prove
+- Contains the opposite of H₀ (≠, >, or <)
+- Cannot overlap with H₀
+- Like "proving guilty"
+
+#### 3. Example: Legal System Analogy
+- H₀: Innocent (default position)
+- H₁: Guilty (needs to be proven)
+
+### Hypothesis Testing - Testing Population Parameters, Not Statistics
+
+- **Key Concept**: Hypothesis tests are always performed on population parameters, never on sample statistics.
+  
+- **Reasoning**: 
+  - Sample statistics (like sample mean, sample proportion) are values we already have calculated from our data
+  - These statistics are known values, so there's no uncertainty to test
+  - The purpose of hypothesis testing is to make inferences about unknown population parameters using sample data
+  
+- **Example**:
+  - We test hypotheses about population means (μ), not sample means (x̄)
+  - We test hypotheses about population proportions (p), not sample proportions (p̂)
+  - We test hypotheses about population standard deviations (σ), not sample standard deviations (s)
+
+- **Remember**: The goal of inferential statistics is to use sample data to make conclusions about unknown population parameters.
+
+Common hypothesis tests include:
+
+1. Testing a population mean (One sample t-test)(opens in a new tab).
+2. Testing the difference in means (Two-sample t-test)(opens in a new tab)
+3. Testing the difference before and after some treatment on the same individual (Paired t-test)(opens in a new tab)
+4. Testing a population proportion (One sample z-test)(opens in a new tab)
+5. Testing the difference between population proportions (Two sample z-test)(opens in a new tab)
+
+
+You can use one of these sites to provide a t-table or z-table to support one of the above approaches:
+
+t-table(opens in a new tab)
+t-table or z-table
+
+### Rules for Setting Up Hypotheses
+Null Hypothesis (H₀) Properties:
+Is assumed true at the start
+Usually states "no effect" or "groups are equal"
+Contains an equality sign (=, ≤, or ≥)
+Like "innocent until proven guilty"
+Alternative Hypothesis (H₁) Properties:
+What we want to prove
+Contains the opposite of H₀ (≠, >, or <)
+Cannot overlap with H₀
+Like "proving guilty"
+Example: Legal System Analogy
+H₀: Innocent (default position)
+H₁: Guilty (needs to be proven)
 
 ```
 
@@ -1515,11 +931,323 @@ Hypothesis testing is a fundamental tool in statistical analysis that helps us m
    - Document all decisions
 
 
+### Hypothesis Testing - Testing Population Parameters, Not Statistics
 
-–––––––––––––––––––––––––––––––––––––––
+- **Key Concept**: Hypothesis tests are always performed on population parameters, never on sample statistics.
+  
+- **Reasoning**: 
+  - Sample statistics (like sample mean, sample proportion) are values we already have calculated from our data
+  - These statistics are known values, so there's no uncertainty to test
+  - The purpose of hypothesis testing is to make inferences about unknown population parameters using sample data
+  
+- **Example**:
+  - We test hypotheses about population means (μ), not sample means (x̄)
+  - We test hypotheses about population proportions (p), not sample proportions (p̂)
+  - We test hypotheses about population standard deviations (σ), not sample standard deviations (s)
+
+- **Remember**: The goal of inferential statistics is to use sample data to make conclusions about unknown population parameters.
+
+
+Common hypothesis tests include:
+
+1. Testing a population mean (One sample t-test)(opens in a new tab).
+2. Testing the difference in means (Two-sample t-test)(opens in a new tab)
+3. Testing the difference before and after some treatment on the same individual (Paired t-test)(opens in a new tab)
+4. Testing a population proportion (One sample z-test)(opens in a new tab)
+5. Testing the difference between population proportions (Two sample z-test)(opens in a new tab)
+
+
+You can use one of these sites to provide a t-table or z-table to support one of the above approaches:
+
+t-table(opens in a new tab)
+t-table or z-table
+
+
+### Rules for Setting Up Hypotheses
+
+#### 1. Null Hypothesis (H₀) Properties
+- Is assumed true at the start
+- Usually states "no effect" or "groups are equal"
+- Contains an equality sign (=, ≤, or ≥)
+- Like "innocent until proven guilty"
+
+#### 2. Alternative Hypothesis (H₁) Properties
+- What we want to prove
+- Contains the opposite of H₀ (≠, >, or <)
+- Cannot overlap with H₀
+- Like "proving guilty"
+
+#### 3. Example: Legal System Analogy
+- H₀: Innocent (default position)
+- H₁: Guilty (needs to be proven)
+
+
+Setting up null and alternative hypotheses
+––––––––––––––––––––––––––––––––––––––––––
+
+1. The H₀ is true before you collect any data.
+2. The H₀ usually states there is no effect or that two groups are equal.
+3. The H₀ and H₁ are competing, non-overlapping hypotheses.
+4. H₁ is what we would like to prove to be true.
+5. H₀ contains an equal sign of some kind - either =, ≤, or ≥.
+6. H₁ contains the opposition of the null - either ≠, >, or <.
+
+
+Because we wanted to test if a new page was better than an existing page, we set that up in the alternative. Two indicators are that the null should hold the equality, and the statement we would like to be true should be in the alternative. Therefore, it would look like this:
+
+H₀ : μ₁ ≤ μ₂
+H₁ : μ₁ > μ₂
+
+
+Here μ₁ represents the population mean return from the new page. Similarly, μ₂ represents the population mean return from the old page.
+
+Depending on your question of interest, you would change your null and alternative hypotheses to match.
+
+
+# Understanding Type I and Type II Errors in Hypothesis Testing
+
+## Definitions
+
+### Type I Error (α - Alpha)
+- Occurs when we **reject a true null hypothesis** (false positive)
+- Probability is typically set at 0.05 (5% significance level)
+- Example: Concluding a new treatment works when it actually doesn't
+
+### Type II Error (β - Beta)
+- Occurs when we **fail to reject a false null hypothesis** (false negative)
+- Related to statistical power (1 - β)
+- Example: Concluding a treatment doesn't work when it actually does
+
+## Comparison Table
+| Aspect | Type I Error | Type II Error |
+|--------|--------------|---------------|
+| Definition | Rejecting true H₀ | Failing to reject false H₀ |
+| Symbol | α (alpha) | β (beta) |
+| Common Value | 0.05 | 0.20 |
+| Type of Error | False Positive | False Negative |
+
+## Real-World Examples
+1. **Medical Testing**
+   - Type I: Diagnosing healthy person as sick
+   - Type II: Missing actual disease in sick patient
+
+2. **Quality Control**
+   - Type I: Rejecting good batch of products
+   - Type II: Accepting defective batch
+
+## Relationship Between Errors
+- Reducing one type of error typically increases the other
+- Sample size increase can reduce both types
+- Trade-off depends on relative costs of each error
+
+## Controlling Errors
+- Type I controlled by significance level (α)
+- Type II reduced by:
+  - Increasing sample size
+  - Reducing variability
+  - Increasing effect size
+  - Setting higher significance level
+
+This understanding is crucial for:
+- Research design
+- Sample size determination
+- Statistical power analysis
+- Decision-making in hypothesis testing
+
+
+# Type I Errors
+
+Type I errors have the following features:
+
+1. You should set up your null and alternative hypotheses so that the worse of your errors is the type I error.
+2. They are denoted by the symbol α or alpha
+3. The definition of a type I error is: Deciding the alternative (H₁) is true when actually (H₀) is true.
+4. Type I errors are often called false positives.
+
+# Type II Errors
+
+1. They are denoted by the symbol β or beta
+2. The definition of a type II error is: Deciding the null (H₀) is true when actually (H₁) is true.
+3. Type II errors are often called false negatives.
+
+
+In the most extreme case, we can always choose one hypothesis (say always choosing the null) to ensure that a particular error never occurs (never a type I error, assuming we always choose the null). However, more generally, there is a relationship where a single set of data decreasing your chance of one type of error increases the chance of the other error occurring.
+
+
+# Understanding P-Values
+
+
+The definition of a p-value is the probability of observing your statistic (or one more extreme in favor of the alternative) if the null hypothesis is true.
+
+In this video, you learned exactly how to calculate this value. The more extreme in favor of the alternative portion of this statement determines the shading associated with your p-value.
+
+Therefore, you have the following cases:
+
+If your parameter is greater than some value in the alternative hypothesis, your shading will look like this to obtain your p-value:
+
 
 <br>
 
-![Alt Text](cancer.png)
+![P value](images/1.png)
 
 <br>
+
+If your parameter is less than some value in the alternative hypothesis, your shading would look like this to obtain your p-value:
+
+
+<br>
+
+![P value](images/2.png)
+
+<br>
+
+If your parameter is not equal to some value in the alternative hypothesis, your shading would look like this to obtain your p-value:
+
+<br>
+
+![P value](images/3.png)
+
+<br>
+
+You could integrate the sampling distribution to obtain the area for each of these p-values. Alternatively, you will be simulating to obtain these proportions in the next concepts.
+
+
+
+
+## Definition and Interpretation
+- The p-value is the probability of obtaining test results at least as extreme as the observed results, assuming the null hypothesis is true
+- Smaller p-values indicate stronger evidence against the null hypothesis
+- It answers: "If H₀ were true, how likely would we see data this extreme?"
+
+## Key Properties
+1. **Range**: Always between 0 and 1
+2. **Threshold**: Compared to significance level (α)
+   - If p ≤ α: Reject H₀
+   - If p > α: Fail to reject H₀
+3. **NOT the probability that H₀ is true**
+
+## Common Misconceptions
+- ❌ P-value is NOT the probability of making a mistake
+- ❌ P-value is NOT the probability that H₀ is true
+- ❌ P-value is NOT the probability that H₁ is true
+- ✅ P-value IS the probability of seeing data this extreme if H₀ is true
+
+## Example Interpretation
+P-value = 0.03 means:
+- If H₀ were true
+- And we repeated the experiment many times
+- We would see results this extreme only 3% of the time
+
+## Decision Making
+- Traditional significance levels:
+  - α = 0.05 (5%)
+  - α = 0.01 (1%)
+- Decision rule:
+  - p < α: Strong evidence against H₀
+  - p ≥ α: Insufficient evidence against H₀
+
+
+# Understanding P-values in Hypothesis Testing
+
+## Definition and Interpretation
+The p-value represents the probability of observing your test statistic (or a more extreme value) if the null hypothesis is true.
+
+## Key Concepts
+
+### Small P-values (p ≤ α)
+- Indicates strong evidence against the null hypothesis
+- Suggests data likely came from a different distribution
+- Leads to rejecting H₀
+- Typically use α = 0.05 as threshold
+
+### Large P-values (p > α)
+- Indicates data is consistent with null hypothesis
+- Insufficient evidence to reject H₀
+- Fail to reject (but don't "accept") H₀
+
+## Decision Rules
+```
+If p-value ≤ α: Reject H₀
+If p-value > α: Fail to reject H₀
+```
+
+## Important Notes
+1. P-values do not prove hypotheses true or false
+2. They quantify the strength of evidence against H₀
+3. Small p-values indicate evidence against H₀
+4. P-value should be compared to predetermined α level
+5. α represents acceptable Type I error rate
+
+## Common Mistakes to Avoid
+- Don't interpret p > α as "proving" H₀
+- Don't confuse statistical with practical significance
+- Remember: failing to reject ≠ accepting H₀
+
+## Example
+If α = 0.05 and p = 0.03:
+- Since 0.03 < 0.05
+- We reject H₀
+- Evidence supports alternative hypothesis
+
+Therefore, the wording used in conclusions of hypothesis testing includes: We reject the null hypothesis, or We fail to reject the null hypothesis. This lends itself to the idea that you start with the null hypothesis true by default, and "choosing" the null at the end of the test would have been the choice even if no data were collected.
+
+When performing more than one hypothesis test, your type I error compounds. To correct this, a common technique is called the Bonferroni correction. This correction is very conservative but says that your new type I error rate should be the error rate you actually want to be divided by the number of tests you perform.
+
+Therefore, if you would like to hold a type I error rate of 1% for each of the 20 hypothesis tests, the Bonferroni corrected rate would be 0.01/20 = 0.0005. This would be the new rate you should use to compare the p-value for each of the 20 tests to make your decision.
+
+Other Techniques
+Additional techniques to protect against compounding type I errors include:
+
+1. Tukey correction(opens in a new tab)
+2. Q-values
+
+# Bonferroni Correction in Multiple Hypothesis Testing
+
+## Purpose
+- Controls family-wise error rate (FWER) when performing multiple hypothesis tests
+- Reduces probability of Type I errors (false positives)
+- More conservative than other multiple testing corrections
+
+## Formula
+```
+α_adjusted = α / n
+```
+Where:
+- α is original significance level (typically 0.05)
+- n is number of independent tests
+- α_adjusted is new threshold for each test
+
+## Example
+If running 5 tests with α = 0.05:
+- α_adjusted = 0.05/5 = 0.01
+- Each individual test uses 0.01 as significance threshold
+- Must have p < 0.01 to reject null hypothesis
+
+## Advantages
+- Simple to calculate and implement
+- Guarantees control of family-wise error rate
+- Conservative approach to Type I error control
+
+## Disadvantages
+- Can be too conservative
+- Reduces statistical power
+- May increase Type II errors
+- Assumes tests are independent
+
+## When to Use
+- Multiple independent hypothesis tests
+- Strong control of false positives needed
+- Small number of comparisons
+- Tests are independent
+
+## Alternative Methods
+- Holm's sequential Bonferroni
+- False Discovery Rate (FDR)
+- Benjamini-Hochberg procedure
+- Šidák correction
+
+## Practical Example
+Testing 3 drug treatments:
+- Original α = 0.05
+- Adjusted α = 0.05/3 = 0.0167
+- Each test must meet p < 0.0167 for significance
