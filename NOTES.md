@@ -1,6 +1,8 @@
+––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 WEBSITE: https://www.statisticshowto.com
 
-
+Book: An Introduction to Statistical Learning - Gareth James
+––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 
 # CHAPTER 3: PROBABILITY 
 
@@ -1252,3 +1254,150 @@ A common definition for the R-squared variable is that it is the amount of varia
 Many feel that R-squared isn't a great measure (which is possibly true), but I would argue that using cross-validation can assist us with validating any measure that helps us understand the fit of a model to our data. Here(opens in a new tab), you can find one such argument explaining why one individual doesn't care for R-squared.
 
 
+
+# Multiple Linear Regression
+
+# Variance Inflation Factor (VIF) & Multicollinearity
+
+
+The Variance Inflation Factor (VIF) is a crucial statistical measure used to detect and quantify multicollinearity in regression analysis - when two or more predictors in a model are highly correlated with each other. The formula VIFᵢ = 1/(1 - R²ᵢ) tells us how much the variance of a coefficient is "inflated" due to this correlation. Think of it like a warning system: a VIF of 1 means no correlation issues, but as it gets higher (especially above 5), it signals that your predictors might be too closely related, which can make your model unreliable. The common fix is either removing one of the correlated variables or combining them in a meaningful way. It's like having two very similar ingredients in a recipe - sometimes you need to choose one or find a way to blend them effectively.
+
+
+## VIF Formula
+VIFᵢ = 1/(1 - R²ᵢ)
+
+Where:
+- VIFᵢ is the variance inflation factor for predictor i
+- R²ᵢ is the R-squared from regressing predictor i on all other predictors
+
+## Key Points About VIF:
+
+1. **Purpose**
+   - Measures the severity of multicollinearity
+   - Quantifies how much variance is inflated due to correlation with other predictors
+
+2. **Interpretation**
+   - VIF = 1: No correlation with other predictors
+   - VIF > 1: Some correlation exists
+   - VIF > 5: Potential multicollinearity problem
+   - VIF > 10: Serious multicollinearity problem
+
+3. **Properties**
+   - Always ≥ 1 
+   - Higher values indicate stronger multicollinearity
+   - Directly related to tolerance (TOL = 1/VIF)
+
+4. **Usage Guidelines**
+   - Monitor VIFs during regression analysis
+   - Consider removing predictors with high VIFs
+   - Look for alternative predictors
+   - Consider dimensionality reduction techniques
+
+5. **Limitations**
+   - Only detects linear relationships
+   - Sensitive to sample size
+   - May not capture complex interactions
+
+## Dealing with High VIFs:
+1. Remove highly correlated predictors
+2. Create interaction terms
+3. Use regularization techniques
+4. Apply principal component analysis (PCA)
+5. Center variables around their means
+
+
+We would like x-variables to be related to the response, but not to be related to one another. When our x-variables are correlated with one another, this is known as multicollinearity. Multicollinearity has two potential negative impacts. As you saw in the previous example,
+
+   1. The expected relationships between your x-variables and the response may not hold when multicollinearity is present. That is, you may expect a positive relationship between the explanatory variables and the response (based on the bivariate relationships), but in the multiple linear regression case, it turns out the relationship is negative.
+
+   2. Our hypothesis testing results may not be reliable. It turns out that having correlated explanatory variables means that our coefficient estimates are less stable. That is, standard deviations (often called standard errors) associated with your regression coefficients are quite large. Therefore, a particular variable might be useful for predicting the response, but because of the relationship it has with other x-variables, you will no longer see this association.
+
+We have also looked at two different ways of identifying multicollinearity:
+
+   1. Looking at the correlation of each explanatory variable with each other explanatory variable (with a plot or the correlation coefficient).
+
+   2. Looking at VIFs for each variable.
+
+When VIFs are greater than 10, this suggests that multicollinearity is certainly a problem in your model. Some experts even suggest that VIFs greater than 5 can be problematic. In most cases, not just one VIF is high, but rather many VIFs are high, as these are measures of how related variables are with one another.
+
+The most common way of working with correlated explanatory variables in a multiple linear regression model is simply to remove one of the variables that is most related to the other variables. Choosing an explanatory variable that you aren't interested in, or isn't as important to you, is a common choice.
+
+
+
+
+Video Transcript
+
+
+0:01
+
+It is possible to fit linear models that look like non-linear models,
+
+
+0:06
+
+by adding higher order terms, like interactions,
+
+
+0:09
+
+quadratics, cubics, and even higher order values to your model.
+
+
+0:14
+
+Though these higher order terms might allow you to better predict your response,
+
+
+0:18
+
+I often shy away from using these types of terms,
+
+
+0:20
+
+unless I specifically see the relationship in the data.
+
+
+0:24
+
+Adding these terms makes interpreting the results of your data more complex,
+
+
+0:28
+
+and the interpretations you had for lower order terms,
+
+
+0:31
+
+like the slopes on square footage,
+
+
+0:33
+
+or for the slope on the level of a categorical variable,
+
+
+0:36
+
+are no longer easily interpreted when these terms show up in higher order terms.
+
+
+0:41
+
+Let's try adding some of these higher order terms to your model,
+
+
+0:44
+
+just so you can see how they might work and how to identify when to use one.
+
+It's possible to fit linear models that look like non-linear models by adding higher order terms, like:
+
+Interactions
+Quadratics
+Cubics
+Higher order values
+While these higher order terms might allow you to better predict your response, adding these terms makes interpreting your results more complex. In addition, interpretations for lower order terms like slope, are not easily interpreted.
+
+in the next exercise, you will practice using higher order terms in your model and learn to identify when to use them.
