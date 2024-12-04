@@ -1186,7 +1186,8 @@ The slope is defined as the predicted change in the response for every one unit 
 
 
 
-## Linear Regression Notation
+
+### Linear Regression Notation
 
 We notate the line in linear regression in the following way:
 
@@ -1321,6 +1322,260 @@ We have also looked at two different ways of identifying multicollinearity:
 When VIFs are greater than 10, this suggests that multicollinearity is certainly a problem in your model. Some experts even suggest that VIFs greater than 5 can be problematic. In most cases, not just one VIF is high, but rather many VIFs are high, as these are measures of how related variables are with one another.
 
 The most common way of working with correlated explanatory variables in a multiple linear regression model is simply to remove one of the variables that is most related to the other variables. Choosing an explanatory variable that you aren't interested in, or isn't as important to you, is a common choice.
+
+
+# Logistic Regression
+
+
+## Logistic Regression
+
+Logistic Regression is a fundamental statistical model used for binary classification problems. Unlike linear regression, which predicts continuous values, logistic regression predicts the probability of an instance belonging to a particular class.
+
+### The Logistic Function (Sigmoid)
+
+The core of logistic regression is the sigmoid function, which maps any real value to the range [0,1]:
+
+σ(z) = 1 / (1 + e^(-z))
+
+where z is the linear combination of features:
+z = β₀ + β₁x₁ + β₂x₂ + ... + βₙxₙ
+
+### Probability Prediction
+
+The model predicts the probability P(Y=1|X) that Y belongs to class 1, given features X:
+
+P(Y=1|X) = σ(β₀ + β₁x₁ + β₂x₂ + ... + βₙxₙ)
+
+### Decision Boundary
+
+The decision boundary is formed when:
+P(Y=1|X) = 0.5
+which occurs when z = 0
+
+### Cost Function
+
+The cost function for logistic regression (Log Loss):
+
+J(θ) = -(1/m) ∑[y⁽ⁱ⁾log(h_θ(x⁽ⁱ⁾)) + (1-y⁽ⁱ⁾)log(1-h_θ(x⁽ⁱ⁾))]
+
+where:
+- m is the number of training examples
+- y⁽ⁱ⁾ is the actual class (0 or 1)
+- h_θ(x⁽ⁱ⁾) is the predicted probability
+
+### Gradient Descent Update Rule
+
+The parameters are updated using:
+
+θⱼ := θⱼ - α ∑(h_θ(x⁽ⁱ⁾) - y⁽ⁱ⁾)x⁽ⁱ⁾ⱼ
+
+where:
+- α is the learning rate
+- θⱼ represents the j-th parameter
+- h_θ(x⁽ⁱ⁾) is the predicted probability
+- y⁽ⁱ⁾ is the actual class
+
+### Advantages of Logistic Regression
+
+1. Simple and interpretable
+2. Less prone to overfitting with small datasets
+3. Provides probability scores
+4. Efficient to train
+5. Performs well on linearly separable data
+
+### Assumptions
+
+1. Binary outcome variable
+2. Independence between observations
+3. Little or no multicollinearity among features
+4. Linear relationship between log-odds and features
+5. Large sample size (typically >50 samples per predictor)
+
+```textmate
+#load libraries
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+#dummy variables
+df[['no_fraud', 'fraud']]= pd.get_dummies(df['fraud'])
+df=df.drop('no_fraud', axis=1)
+
+#instantiate logistic regression model
+df['intercept']= 1
+logit_mod =sm.Logit(df['fraud'],df[['intercept', 'duration']])
+
+#fit the model
+results = logit_mod.fit()
+
+#get summary statistics
+results.summary() 
+```
+
+
+# Logistic Regression Equations
+
+Logistic regression - the predicted response variable is limited to a probability between 0 and 1
+
+Linear regression - the predicted response variable can take any value and is unconstrained
+
+To perform logistic regression mathematically:
+
+- The categorical column labels (limited to two values) must be encoded with values of 0 and 1
+
+- A linear model predicts the log odds instead of predicting the response itself
+
+- Where p = the probability of a one value occurring, we can calculate the odds ratio
+
+log(p/(1-p)) = b₀ + b₁x₁ + b₂x₂ + ...
+
+By taking the log of the odds ratio above and equating it to the linear regression line, the predictions will measure the probability of success from 0 to 1.
+
+p = e^(b₀+b₁x₁+b₂x₂+...)/(1 + e^(b₀+b₁x₁+b₂x₂+...))
+
+The log of the odd ratio can be reformulated into the equation above to find the probability directly.
+
+
+
+```textmate
+#load libraries
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+#dummy variables
+df[['no_fraud', 'fraud']]= pd.get_dummies(df['fraud'])
+df=df.drop('no_fraud', axis=1)
+
+#instantiate logistic regression model
+df['intercept']= 1
+logit_mod =sm.Logit(df['fraud'],df[['intercept', 'duration']])
+
+#fit the model
+results = logit_mod.fit()
+
+#get summary statistics
+results.summary() 
+```
+
+# Performance Metrics
+
+When determining how well your model is performing, the most common measure to use is accuracy.
+
+Accuracy = number of correctly labeled rows / number of total rows in dataset
+
+However, accuracy is not always the best measure, especially for unbalanced datasets. In the next few 
+pages, we will cover other types of metrics that will help us determine if our models are performing 
+well.
+
+
+# Confusion Matrix in Logistic Regression
+
+A confusion matrix is a table that helps evaluate the performance of a classification model by showing the relationship between predicted and actual values:
+
+```
+               Predicted
+Actual    Negative | Positive
+-------------------------
+Negative |    TN   |   FP
+-------------------------
+Positive |    FN   |   TP
+```
+
+Where:
+- **True Negatives (TN)**: Correctly predicted negatives
+- **False Positives (FP)**: Incorrectly predicted positives 
+- **False Negatives (FN)**: Incorrectly predicted negatives
+- **True Positives (TP)**: Correctly predicted positives
+
+Key Metrics:
+1. **Accuracy** = (TP + TN)/(Total)
+2. **Precision** = TP/(TP + FP)
+3. **Recall** = TP/(TP + FN)
+4. **F1 Score** = 2 × (Precision × Recall)/(Precision + Recall)
+5. **Specificity** = TN/(TN + FP)
+
+This helps understand model performance beyond simple accuracy, especially important for imbalanced datasets.
+
+# Confusion Matrix for Eigenfaces Recognition
+
+A Confusion Matrix in facial recognition using eigenfaces helps evaluate how well the system identifies different individuals:
+
+```
+Actual Person    | Predicted Person
+               1   2   3   4   5
+Person 1      25   2   0   1   0
+Person 2       1  27   0   0   0
+Person 3       0   1  24   2   1
+Person 4       2   0   1  25   0
+Person 5       0   0   2   1  26
+```
+
+Key Points:
+- Diagonal elements = Correct identifications (True Positives)
+- Off-diagonal elements = Misclassifications
+- Each row shows actual identity
+- Each column shows predicted identity
+
+Interpretation:
+- Perfect recognition would show all values on diagonal
+- Higher values off-diagonal indicate confusion between specific identities
+- Can identify which faces are commonly mistaken for each other
+- Helps in improving feature extraction and classification
+
+This matrix is particularly useful for:
+1. Identifying systematic errors
+2. Finding similar-looking individuals
+3. Evaluating recognition accuracy per person
+4. Tuning eigenface parameters
+
+
+I'll write separate notes about these concepts, with a specific focus on their application to face recognition and EngenFaces:
+
+# Precision and Recall
+
+Precision and recall are fundamental metrics in evaluating machine learning models, especially relevant for face recognition systems:
+
+Precision = True Positives / (True Positives + False Positives)
+- Measures how many of the model's positive predictions were actually correct
+- In face recognition, precision tells us what percentage of the faces the system identified as matches were actually correct matches
+
+Recall = True Positives / (True Positives + False Negatives)
+- Measures how many of the actual positive cases the model correctly identified
+- In face recognition, recall tells us what percentage of the actual matching faces in the dataset were successfully identified
+
+# True Positives in EngenFaces
+
+True positives in EngenFaces occur when:
+- The system correctly identifies a face as matching when it is indeed a match
+- The person is actually in the database and is correctly recognized
+- The system makes a positive match that corresponds to reality
+- These represent successful and accurate face recognition events
+
+# False Positives in EngenFaces
+
+False positives in EngenFaces occur when:
+- The system incorrectly identifies a face as matching when it is not actually a match
+- The system claims to recognize someone who isn't actually in the database
+- A person is misidentified as someone else
+- These are important to minimize as they can lead to misidentification and security issues
+
+# False Negatives in EngenFaces
+
+False negatives in EngenFaces occur when:
+- The system fails to identify a face that should have been matched
+- A person who is in the database is not recognized
+- The system misses a legitimate match that it should have detected
+- These represent missed opportunities for correct identification and can impact system effectiveness
+
+Note: When discussing performance metrics specifically for EngenFaces, I should mention that while I'm familiar with these concepts in face recognition systems generally, I might not have the most up-to-date information about EngenFaces' specific performance metrics, as these may change over time or vary between system versions.
+
+
+
+
+
+
+
 
 
 
