@@ -1,9 +1,3 @@
-––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-WEBSITE: https://www.statisticshowto.com
-
-Book: An Introduction to Statistical Learning - Gareth James
-––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-
 # CHAPTER 3: PROBABILITY 
 
 This repository contains notes and examples for various statistical concepts used in data analysis.
