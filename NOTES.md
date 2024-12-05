@@ -1565,11 +1565,117 @@ False negatives in EngenFaces occur when:
 Note: When discussing performance metrics specifically for EngenFaces, I should mention that while I'm familiar with these concepts in face recognition systems generally, I might not have the most up-to-date information about EngenFaces' specific performance metrics, as these may change over time or vary between system versions.
 
 
+# A/B Testing and Statistical Hypothesis Testing Notes
 
+## Basic Concepts
 
+### Conversion Rates
+- **Control Page**: The existing/current page
+- **Treatment Page**: The new/alternative page
+- **Conversion Rate**: Percentage of users who complete a desired action
+  ```python
+  conversion_rate = number_of_conversions / total_number_of_users
+  ```
 
+## Statistical Hypothesis Testing
 
+### Hypotheses
+In A/B testing for webpage conversion rates:
 
+- **Null Hypothesis (H₀)**: `p_treatment ≤ p_control`
+  - Assumes the new page is NOT better than the old page
+  - Conservative approach: assume current page is better unless proven otherwise
 
+- **Alternative Hypothesis (H₁)**: `p_treatment > p_control`
+  - Claims the new page is better than the old page
+  - Need strong evidence to accept this claim
 
+### Types of Errors
 
+1. **Type I Error (False Positive, α)**
+   - Incorrectly rejecting H₀ when it's actually true
+   - In context: Switching to new page when it's not actually better
+   - Probability = significance level (typically 0.05 or 5%)
+
+2. **Type II Error (False Negative, β)**
+   - Failing to reject H₀ when it's actually false
+   - In context: Keeping old page when new page is actually better
+
+### Significance Level (α = 0.05)
+- Standard 5% significance level balances between:
+  - Being too conservative (missing improvements)
+  - Being too lenient (implementing ineffective changes)
+- Means we're 95% confident in our decision
+- Historical convention that works well for web conversion testing
+
+### P-Value
+- Definition: Probability of seeing results as extreme or more extreme than observed, IF null hypothesis is true
+- Mathematical expression:
+  ```
+  p-value = P(observed difference or more extreme | H₀ is true)
+  ```
+
+#### Detailed Example of P-Value Interpretation
+Let's say:
+1. Control page conversion: 10%
+2. Treatment page conversion: 13%
+3. Observed difference: +3%
+
+Mathematically:
+```
+P(seeing difference ≥ 3% | null hypothesis is true) < 0.05
+```
+This equation reads as: "The probability of seeing a 3% or larger difference, given that the null hypothesis is true, is less than 5%"
+
+If this inequality is true (p-value < 0.05), it means:
+- IF the new page weren't actually better (null hypothesis true)
+- The probability P(seeing difference ≥ 3%) < 0.05
+- In other words: there's less than a 5% chance of seeing a 3% or larger improvement just by random luck
+- Therefore, this improvement is probably real, not just random variation
+
+Think of it like this:
+- You observed something (3% improvement) that has P < 0.05 of happening if H₀ were true
+- Since you did observe it, one of two things must be true:
+  1. Either you witnessed a very rare event (probability < 5%)
+  2. Or your assumption (null hypothesis) is wrong
+
+We choose to believe #2 - the null hypothesis is wrong, meaning the new page is actually better.
+
+That's why we switch to the new page - because P(seeing difference ≥ 3% | H₀ true) < 0.05 suggests the improvement is real, not just random luck.
+
+### Decision Making Process
+
+1. If p-value < 0.05:
+   - Very small chance (< 5%) of seeing such results by chance
+   - REJECT null hypothesis
+   - Decision: Switch to new page
+   - We're confident the new page is better
+
+2. If p-value ≥ 0.05:
+   - Larger chance (≥ 5%) of seeing such results by chance
+   - FAIL TO REJECT null hypothesis
+   - Decision: Keep old page
+   - Not enough evidence that new page is better
+
+## Pandas Query Examples
+```python
+# Basic filtering
+df.query('country == "US"')
+
+# Multiple conditions
+df.query('country == "US" and group == "control"')
+
+# Conversion rate for specific group
+df.query('group == "control"')['converted'].mean()
+
+# Print formatted results
+conversion_prob = df.query('group == "control"')['converted'].mean()
+print(f"Conversion probability: {conversion_prob:.4f}")
+print(f"Conversion percentage: {conversion_prob*100:.2f}%")
+```
+
+## Important Notes
+1. Always set random seed for reproducibility
+2. Document your hypothesis and significance level before running tests
+3. Consider practical significance alongside statistical significance
+4. Remember that p-value doesn't tell you the size of the effect, only how unlikely the result is under H₀
